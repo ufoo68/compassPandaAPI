@@ -5,6 +5,10 @@
       {
         "source": "/locate",
         "function": "app"
+      },
+      {
+        "source": "/map",
+        "function": "app"
       }
     ],
     "ignore": [
