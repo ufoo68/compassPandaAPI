@@ -10,33 +10,10 @@ const db = admin.firestore();
 
 const app = express();
 
-const ALLOWED_METHODS = [
-  'GET',
-  'POST',
-  'PUT',
-  'PATCH',
-  'DELETE',
-  'HEAD',
-  'OPTIONS'
-];
-
-const ALLOWED_ORIGINS = [
-  'https://127.0.0.1:3000',
-  'https://127.0.0.1:3001',
-  'http://localhost:3000/'
-];
-
 // レスポンスHeaderを組み立てる
 app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  if(ALLOWED_ORIGINS.indexOf(req.headers.origin) > -1) {
-      sess.cookie.secure = true;
-      res.cookie('example', Math.random().toString(), {maxAge: 86400, httpOnly: true});
-      res.setHeader('Access-Control-Allow-Origin', origin);
-      res.setHeader('Access-Control-Allow-Methods', ALLOWED_METHODS.join(','));
-      res.setHeader('Access-Control-Allow-Headers', 'Content-type,Accept,X-Custom-Header');
-  }
-
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 
